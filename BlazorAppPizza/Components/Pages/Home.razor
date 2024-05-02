@@ -2,6 +2,38 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="max-h-screen bg-opacity-40 flex-grow overflow-y-auto bg-gradient-to-b from-transparent via-transparent to-cyan-200 p-6">
+  <h1 class="text-3xl font-bold">Blazing Pizzas</h1>
+  <ul class="grid-cols-12 grid">
+    @if (specials != null)
+    {
+      @foreach (var special in specials)
+      {
+        <li style="background-image: url('@special.ImageUrl')" class="col-span-4 m-4 relative h-40 list-none rounded-lg bg-cover shadow-md transition duration-100 ease-out hover:scale-105">
+          <div class="shadow-text absolute bottom-0 left-0 right-0 top-0 cursor-pointer rounded-lg bg-gradient-to-b from-black via-transparent to-transparent p-4 text-yellow-200">
+              <span class="font-bahnschrift my-2 block text-lg uppercase text-white">@special.Name</span>
+                  @special.Description
+                <span class="leading-8 absolute bottom-2 right-4 rounded bg-green-500 px-2 py-1 text-lg font-semibold text-white before:content-[£] before:font-light before:text-sm before:mr-2">@special.GetFormattedBasePrice()</span>
+          </div>
+        </li>
+      }
+    }
+  </ul>
+</div>
 
-Welcome to your new app.
+@code {
+    List<PizzaSpecial> specials = new();
+
+    protected override void OnInitialized()
+    {
+        specials.AddRange(new List<PizzaSpecial>
+        {
+            new PizzaSpecial { Name = "The Baconatorizor", BasePrice =  11.99M, Description = "It has EVERY kind of bacon", ImageUrl="img/pizzas/bacon.jpg"},
+            new PizzaSpecial { Name = "Buffalo chicken", BasePrice =  12.75M, Description = "Spicy chicken, hot sauce, and blue cheese, guaranteed to warm you up", ImageUrl="img/pizzas/meaty.jpg"},
+            new PizzaSpecial { Name = "Veggie Delight", BasePrice =  11.5M, Description = "It's like salad, but on a pizza", ImageUrl="img/pizzas/salad.jpg"},
+            new PizzaSpecial { Name = "Margherita", BasePrice =  9.99M, Description = "Traditional Italian pizza with tomatoes and basil", ImageUrl="img/pizzas/margherita.jpg"},
+            new PizzaSpecial { Name = "Basic Cheese Pizza", BasePrice =  11.99M, Description = "It's cheesy and delicious. Why wouldn't you want one?", ImageUrl="img/pizzas/cheese.jpg"},
+            new PizzaSpecial { Name = "Classic pepperoni", BasePrice =  10.5M, Description = "It's the pizza you grew up with, but Blazing hot!", ImageUrl="img/pizzas/pepperoni.jpg" }
+        });
+    }
+}
