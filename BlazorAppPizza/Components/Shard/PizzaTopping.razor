@@ -1,0 +1,10 @@
+﻿@inherits ComponentBase
+
+<h2 class="text-2xl font-bold">New Topping: @Topping.Name</h2>
+
+<p>Ingredients: @Topping.Ingredients</p>
+
+@code {
+    [Parameter]
+    public BlazorAppPizza.PizzaTopping Topping { get; set; }
+}

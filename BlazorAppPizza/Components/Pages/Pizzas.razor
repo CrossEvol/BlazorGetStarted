@@ -1,0 +1,62 @@
+﻿@page "/pizzas"
+
+@using BlazorAppPizza.Data
+@inject PizzaService PizzaSvc
+@inject PizzaSalesState SalesState
+
+@if (todaysPizzas == null)
+{
+	<p>We're finding out what pizzas are available today...</p>
+}
+else
+{
+	<h1 class="text-3xl font-bold">Welcome to Blazing Pizzas</h1>
+
+	<p>Today, we've sold this many pizzas: @SalesState.PizzasSoldToday</p>
+
+	<button class="border-2 rounded border-solid" @onclick="IncrementSales">Buy a Pizza</button>
+
+	<h1 class="text-3xl font-bold">Choose your pizza</h1>
+
+	<p>We have all these delicious recipes:</p>
+	<table>
+		<thead>
+			<tr>
+				<th>Pizza Name</th>
+				<th>Description</th>
+				<th>Vegetarian?</th>
+				<th>Vegan?</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var pizza in todaysPizzas)
+			{
+				<tr>
+					<td class="w-36">@pizza.Name</td>
+					<td class="w-80 text-ellipsis">@pizza.Description</td>
+					<td class="w-24 text-left">@pizza.Vegetarian</td>
+					<td class="w-24 text-left">@pizza.Vegan</td>
+					<td>@pizza.Price.ToString("0.00")</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+
+
+@code {
+
+	private Pizza[] todaysPizzas;
+
+	protected override async Task OnInitializedAsync()
+	{
+		todaysPizzas = await PizzaSvc.GetPizzasAsync();
+	}
+
+	private void IncrementSales()
+	{
+		SalesState.PizzasSoldToday++;
+		Console.WriteLine("abc");
+	}
+}

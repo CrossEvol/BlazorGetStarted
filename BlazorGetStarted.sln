@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppSimple", "BlazorAppSimple\BlazorAppSimple.csproj", "{17BBF010-FC80-44DB-BF63-481FEE890EC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppPizza", "BlazorAppPizza\BlazorAppPizza.csproj", "{A1A18820-1231-4B79-8AF5-EAE5331671F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppPizza", "BlazorAppPizza\BlazorAppPizza.csproj", "{A1A18820-1231-4B79-8AF5-EAE5331671F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

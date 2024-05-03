@@ -1,0 +1,13 @@
+﻿@inherits ComponentBase
+
+<h2 class="text-2xl font-bold">New Pizza: @PizzaName</h2>
+
+<p>@PizzaDescription</p>
+
+@code {
+    [Parameter]
+    public string PizzaName { get; set; }
+
+    [Parameter]
+    public string PizzaDescription { get; set; } = "The best pizza you've ever tasted.";
+}

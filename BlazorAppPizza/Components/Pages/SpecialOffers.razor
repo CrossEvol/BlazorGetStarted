@@ -1,0 +1,21 @@
+﻿@page "/specialoffers"
+@using BlazorAppPizza.Components.Shard
+
+<h1>Special Offers</h1>
+
+<CascadingValue Name="DealName" Value="@value">
+    <CascadingValue Name="ChangeDealName" Value="@UpdateValue">
+		<!-- Any descendant component rendered here will be able to access the cascading value. -->
+		<DemoDeal />
+        <button class="border-2 rounded-sm border-solid border-gray-900" onclick="@UpdateValue">Change DealName</button>
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+    private String value { get; set; } = "Throwback Thursday";
+
+    private void UpdateValue()
+    {
+        value = new Bogus.DataSets.Hacker().Noun();
+    }
+}
