@@ -1,7 +1,22 @@
 ﻿@page "/"
+@rendermode InteractiveServer
+
+@using BlazorAppPizza.Components.Shard
+@using BlazorAppPizza.Services
+@using BlazorAppPizza.Data
 
 @inject HttpClient HttpClient
 @inject NavigationManager NavigationManager
+@inject IDialogService DialogService
+@inject OrderState OrderState
+
+<MudDialogProvider FullWidth="true"
+				   MaxWidth="MaxWidth.ExtraSmall"
+				   CloseButton="true"
+				   DisableBackdropClick="true"
+				   NoHeader="true"
+				   Position="DialogPosition.CenterLeft"
+				   CloseOnEscapeKey="true" />
 
 <PageTitle>Home</PageTitle>
 
@@ -12,7 +27,7 @@
 		{
 			@foreach (var special in specials)
 			{
-				<li style="background-image: url('@special.ImageUrl')" class="col-span-4 relative m-4 h-40 list-none rounded-lg bg-cover shadow-md transition duration-100 ease-out hover:scale-105">
+				<li @onclick="@(()=>OpenDialog(special))" style="background-image: url('@special.ImageUrl')" class="col-span-4 relative m-4 h-40 list-none rounded-lg bg-cover shadow-md transition duration-100 ease-out hover:scale-105">
 					<div class="shadow-text absolute bottom-0 left-0 right-0 top-0 cursor-pointer rounded-lg bg-gradient-to-b from-black via-transparent to-transparent p-4 text-yellow-200">
 						<span class="font-bahnschrift my-2 block text-lg uppercase text-white">@special.Name</span>
 						@special.Description
@@ -36,16 +51,17 @@
 		specials = await HttpClient.GetFromJsonAsync<List<PizzaSpecial>>(NavigationManager.BaseUri + "specials");
 	}
 
-	// protected override void OnInitialized()
-	// {
-	// 	specials.AddRange(new List<PizzaSpecial>
-	// 	{
-	// 		new PizzaSpecial { Name = "The Baconatorizor", BasePrice =  11.99M, Description = "It has EVERY kind of bacon", ImageUrl="img/pizzas/bacon.jpg"},
-	// 		new PizzaSpecial { Name = "Buffalo chicken", BasePrice =  12.75M, Description = "Spicy chicken, hot sauce, and blue cheese, guaranteed to warm you up", ImageUrl="img/pizzas/meaty.jpg"},
-	// 		new PizzaSpecial { Name = "Veggie Delight", BasePrice =  11.5M, Description = "It's like salad, but on a pizza", ImageUrl="img/pizzas/salad.jpg"},
-	// 		new PizzaSpecial { Name = "Margherita", BasePrice =  9.99M, Description = "Traditional Italian pizza with tomatoes and basil", ImageUrl="img/pizzas/margherita.jpg"},
-	// 		new PizzaSpecial { Name = "Basic Cheese Pizza", BasePrice =  11.99M, Description = "It's cheesy and delicious. Why wouldn't you want one?", ImageUrl="img/pizzas/cheese.jpg"},
-	// 		new PizzaSpecial { Name = "Classic pepperoni", BasePrice =  10.5M, Description = "It's the pizza you grew up with, but Blazing hot!", ImageUrl="img/pizzas/pepperoni.jpg" }
-	// 	});
-	// }
+	public void OpenDialog(PizzaSpecial special)
+	{
+		OrderState.ConfiguringPizza = new BlazorAppPizza.Pizza()
+			{
+				Special = special,
+				SpecialId = special.Id,
+				Size = BlazorAppPizza.Pizza.DefaultSize,
+				Toppings = new List<BlazorAppPizza.PizzaTopping>(),
+			};
+		var options = new DialogOptions { CloseOnEscapeKey = true };
+		DialogService.Show<ConfigurePizzaDialog>("Simple Dialog", options);
+	}
+
 }

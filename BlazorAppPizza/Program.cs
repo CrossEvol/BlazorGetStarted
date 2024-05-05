@@ -1,5 +1,6 @@
 using BlazorAppPizza.Components;
 using BlazorAppPizza.Data;
+using BlazorAppPizza.Services;
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,7 @@ builder.Services.AddServerSideBlazor();
 
 // Add the AppState class
 builder.Services.AddScoped<PizzaSalesState>();
+builder.Services.AddScoped<OrderState>();
 
 // Register the pizzas service
 builder.Services.AddSingleton<PizzaService>();

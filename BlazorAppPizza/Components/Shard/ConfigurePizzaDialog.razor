@@ -1,0 +1,35 @@
+﻿@using BlazorAppPizza.Services
+@rendermode InteractiveServer
+
+@inject OrderState OrderState
+
+<MudDialog>
+	<DialogContent>
+		<MudContainer MaxWidth="MaxWidth.Large" Class="p-0 m-0 bg-blue" Fixed="true">
+			<MudText Typo="Typo.h4">@OrderState.ConfiguringPizza?.Special.Name</MudText>
+			<MudText Typo="Typo.subtitle2">@OrderState.ConfiguringPizza?.Special.Description</MudText>
+		</MudContainer>
+		<MudSlider Step="2" Min="BlazorAppPizza.Pizza.MinimumSize" Max="BlazorAppPizza.Pizza.MaximumSize" @bind-Value="OrderState.ConfiguringPizza!.Size">Size(@OrderState.ConfiguringPizza!.Size``)</MudSlider>
+		<MudText Typo="Typo.overline">Price :<MudIcon Size="Size.Small" Title="Price" Icon="@Icons.Material.Filled.CurrencyPound" /><b>@OrderState.ConfiguringPizza?.GetFormattedTotalPrice()</b></MudText>
+	</DialogContent>
+	<DialogActions>
+		<MudButton OnClick="Cancel">Cancel</MudButton>
+		<MudButton Color="Color.Primary" OnClick="Submit">Order</MudButton>
+	</DialogActions>
+</MudDialog>
+
+@code {
+	[CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    void Submit()
+    {
+		OrderState.ConfirmConfigurePizzaDialog();
+		MudDialog.Close(DialogResult.Ok(true));
+	}
+
+	void Cancel()
+	{
+		OrderState.CancelConfigurePizzaDialog();
+		MudDialog.Cancel();
+	}
+}
