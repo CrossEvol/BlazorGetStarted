@@ -11,57 +11,77 @@
 @inject OrderState OrderState
 
 <MudDialogProvider FullWidth="true"
-				   MaxWidth="MaxWidth.ExtraSmall"
-				   CloseButton="true"
-				   DisableBackdropClick="true"
-				   NoHeader="true"
-				   Position="DialogPosition.CenterLeft"
-				   CloseOnEscapeKey="true" />
+                   MaxWidth="MaxWidth.ExtraSmall"
+                   CloseButton="true"
+                   DisableBackdropClick="true"
+                   NoHeader="true"
+                   Position="DialogPosition.CenterLeft"
+                   CloseOnEscapeKey="true" />
 
 <PageTitle>Home</PageTitle>
 
+<MudDrawer @bind-Open="@open" Elevation="1">
+    <MudDrawerHeader>
+        <MudText Typo="Typo.h6">My App</MudText>
+    </MudDrawerHeader>
+    <MudNavMenu>
+        <MudNavLink Match="NavLinkMatch.All">Store</MudNavLink>
+        <MudNavLink Match="NavLinkMatch.All">Library</MudNavLink>
+        <MudNavLink Match="NavLinkMatch.All">Community</MudNavLink>
+    </MudNavMenu>
+</MudDrawer>
+
 <div class="bg-opacity-40 max-h-screen flex-grow overflow-y-auto bg-gradient-to-b from-transparent via-transparent to-cyan-200 p-6">
-	<h1 class="text-3xl font-bold">Blazing Pizzas</h1>
-	<ul class="grid-cols-12 grid">
-		@if (specials != null)
-		{
-			@foreach (var special in specials)
-			{
-				<li @onclick="@(()=>OpenDialog(special))" style="background-image: url('@special.ImageUrl')" class="col-span-4 relative m-4 h-40 list-none rounded-lg bg-cover shadow-md transition duration-100 ease-out hover:scale-105">
-					<div class="shadow-text absolute bottom-0 left-0 right-0 top-0 cursor-pointer rounded-lg bg-gradient-to-b from-black via-transparent to-transparent p-4 text-yellow-200">
-						<span class="font-bahnschrift my-2 block text-lg uppercase text-white">@special.Name</span>
-						@special.Description
-						<span class="leading-8 absolute bottom-2 right-4 flex items-center justify-around rounded bg-green-500 px-2 py-1 text-lg font-semibold text-white before:font-light before:text-sm before:mr-2">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-pound" viewBox="0 0 16 16">
-								<path d="M4 8.585h1.969c.115.465.186.939.186 1.43 0 1.385-.736 2.496-2.075 2.771V14H12v-1.24H6.492v-.129c.825-.525 1.135-1.446 1.135-2.694 0-.465-.07-.913-.168-1.352h3.29v-.972H7.22c-.186-.723-.372-1.455-.372-2.247 0-1.274 1.047-2.066 2.58-2.066a5.3 5.3 0 0 1 2.103.465V2.456A5.6 5.6 0 0 0 9.348 2C6.865 2 5.322 3.291 5.322 5.366c0 .775.195 1.515.399 2.247H4z" />
-							</svg><span>@special.GetFormattedBasePrice()</span>
-						</span>
-					</div>
-				</li>
-			}
-		}
-	</ul>
+    <MudStack Row="true">
+        <MudPaper Class="pa-3"><MudText Typo="Typo.h2">Blazing Pizzas</MudText></MudPaper>
+        <MudPaper Width="200px"  Class="pa-3 d-flex align-items-center justify-center"><MudIconButton Icon="@Icons.Material.Filled.AddShoppingCart" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" /></MudPaper>
+    </MudStack>
+    <ul class="grid-cols-12 grid">
+        @if (specials != null)
+        {
+            @foreach (var special in specials)
+            {
+                <li @onclick="@(()=>OpenDialog(special))" style="background-image: url('@special.ImageUrl')" class="col-span-4 relative m-4 h-40 list-none rounded-lg bg-cover shadow-md transition duration-100 ease-out hover:scale-105">
+                    <div class="shadow-text absolute bottom-0 left-0 right-0 top-0 cursor-pointer rounded-lg bg-gradient-to-b from-black via-transparent to-transparent p-4 text-yellow-200">
+                        <span class="font-bahnschrift my-2 block text-lg uppercase text-white">@special.Name</span>
+                        @special.Description
+                        <span class="leading-8 absolute bottom-2 right-4 flex items-center justify-around rounded bg-green-500 px-2 py-1 text-lg font-semibold text-white before:font-light before:text-sm before:mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-pound" viewBox="0 0 16 16">
+                                <path d="M4 8.585h1.969c.115.465.186.939.186 1.43 0 1.385-.736 2.496-2.075 2.771V14H12v-1.24H6.492v-.129c.825-.525 1.135-1.446 1.135-2.694 0-.465-.07-.913-.168-1.352h3.29v-.972H7.22c-.186-.723-.372-1.455-.372-2.247 0-1.274 1.047-2.066 2.58-2.066a5.3 5.3 0 0 1 2.103.465V2.456A5.6 5.6 0 0 0 9.348 2C6.865 2 5.322 3.291 5.322 5.366c0 .775.195 1.515.399 2.247H4z" />
+                            </svg><span>@special.GetFormattedBasePrice()</span>
+                        </span>
+                    </div>
+                </li>
+            }
+        }
+    </ul>
 </div>
 
 @code {
-	List<PizzaSpecial> specials = new();
+    List<PizzaSpecial> specials = new();
 
-	protected override async Task OnInitializedAsync()
-	{
-		specials = await HttpClient.GetFromJsonAsync<List<PizzaSpecial>>(NavigationManager.BaseUri + "specials");
-	}
+    protected override async Task OnInitializedAsync()
+    {
+        specials = await HttpClient.GetFromJsonAsync<List<PizzaSpecial>>(NavigationManager.BaseUri + "specials");
+    }
 
-	public void OpenDialog(PizzaSpecial special)
-	{
-		OrderState.ConfiguringPizza = new BlazorAppPizza.Pizza()
-			{
-				Special = special,
-				SpecialId = special.Id,
-				Size = BlazorAppPizza.Pizza.DefaultSize,
-				Toppings = new List<BlazorAppPizza.PizzaTopping>(),
-			};
-		var options = new DialogOptions { CloseOnEscapeKey = true };
-		DialogService.Show<ConfigurePizzaDialog>("Simple Dialog", options);
-	}
+    public void OpenDialog(PizzaSpecial special)
+    {
+        OrderState.ConfiguringPizza = new BlazorAppPizza.Pizza()
+        {
+            Special = special,
+            SpecialId = special.Id,
+            Size = BlazorAppPizza.Pizza.DefaultSize,
+            Toppings = new List<BlazorAppPizza.PizzaTopping>(),
+        };
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+        DialogService.Show<ConfigurePizzaDialog>("Simple Dialog", options);
+    }
 
+    bool open = false;
+
+    void ToggleDrawer()
+    {
+        open = !open;
+    }
 }
