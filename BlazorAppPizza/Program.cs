@@ -37,9 +37,9 @@ app.UseStaticFiles();
 app.UseAntiforgery();
 
 app.MapRazorPages();
-app.MapBlazorHub();
+//app.MapBlazorHub(); // this will cause multi endpoints error 
 //app.MapFallbackToPage("/_Host");
-app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute("default", "{controller=Home}/{action=Home}/{id?}");
 app.MapRazorComponents<App>()
 	.AddInteractiveServerRenderMode();
 

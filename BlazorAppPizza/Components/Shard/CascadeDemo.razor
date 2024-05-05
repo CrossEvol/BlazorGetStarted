@@ -1,0 +1,12 @@
+﻿<MudText Typo="Typo.h2">Deal: <b>@DealName</b></MudText>
+<MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="UpdateValue">Change DealName</MudButton>
+
+@code {
+	[CascadingParameter(Name = "DealName")]
+	private string DealName { get; set; }
+
+	private void UpdateValue()
+	{
+		DealName = new Bogus.DataSets.Hacker().Noun();
+	}
+}

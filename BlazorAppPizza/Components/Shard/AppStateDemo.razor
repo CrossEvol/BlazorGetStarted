@@ -1,0 +1,13 @@
+﻿@using BlazorAppPizza.Data
+@inject PizzaSalesState SalesState
+
+<MudText Typo="Typo.h2">Welcome to Blazing Pizzas</MudText>
+<MudText Typo="Typo.body1">Today, we've sold this many pizzas: @SalesState.PizzasSoldToday</MudText>
+<MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="IncrementSales">Buy a Pizza</MudButton>
+
+@code {
+    private void IncrementSales()
+    {
+        SalesState.PizzasSoldToday++;
+    }
+}
