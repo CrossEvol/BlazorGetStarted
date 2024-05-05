@@ -1,0 +1,29 @@
+﻿<MudCard>
+    <MudCardContent>
+        <MudText Typo="Typo.h2">EventBindCard1</MudText>
+        <MudText Typo="Typo.body2">(Trigger Value Change after Enter)</MudText>
+        <MudText Typo="Typo.h5">My favorite pizza is: <b>@favPizza</b></MudText>
+        <p>
+            Enter your favorite pizza:
+            <input class="ml-4 border-2 border-gray-800 rounded-sm" @bind="favPizza" />
+        </p>
+    </MudCardContent>
+    <MudDivider/>
+</MudCard>
+<MudCard>
+    <MudCardContent>
+        <MudText Typo="Typo.h2">EventBindCard2</MudText>
+        <MudText Typo="Typo.body2">(Value Change Immediately)</MudText>
+        <MudText Typo="Typo.h5">My favorite pizza is: <b>@favPizza2</b></MudText>
+        <p>
+            Enter your favorite pizza:
+            <input class="ml-4 border-2 border-gray-800 rounded-sm" @bind-value="favPizza2" @bind-value:event="oninput" />
+        </p>
+    </MudCardContent>
+    <MudDivider />
+</MudCard>
+
+@code {
+    private string favPizza { get; set; } = "Margherita";
+    private string favPizza2 { get; set; } = "Margherita2";
+}

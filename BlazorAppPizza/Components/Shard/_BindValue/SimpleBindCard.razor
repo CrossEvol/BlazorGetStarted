@@ -1,0 +1,14 @@
+﻿<MudCard>
+    <MudCardContent>
+        <MudText Typo="Typo.h2">SimpleBindCard</MudText>
+        <p>
+            Your address is:
+            <input class="ml-4 border-2 border-gray-800 rounded-sm" @bind="address" />
+        </p>
+    </MudCardContent>
+    <MudDivider />
+</MudCard>
+
+@code {
+    private string address = "Tokyo";
+}

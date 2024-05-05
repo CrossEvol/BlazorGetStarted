@@ -1,0 +1,49 @@
+﻿<MudCard>
+    <MudCardContent>
+        <MudText Typo="Typo.h2">FormatBindCard for Date</MudText>
+        <MudText Typo="Typo.h5">Order a pizza for your birthday!</MudText>
+        <p>
+            Enter your birth date:
+            <input class="ml-4 border-2 border-gray-800 rounded-sm" @bind="birthdate" @bind:format="dd-MM-yyyy" />
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="ChangeBirthDate">Change BirthDate</MudButton>
+        </p>
+    </MudCardContent>
+    <MudDivider />
+</MudCard>
+<MudCard>
+    <MudCardContent>
+        <MudText Typo="Typo.h2">FormatBindCard for custom format</MudText>
+        <p>
+            <MudText Typo="Typo.body2">Approval rating: <b>@approvalRating</b></MudText>
+            <label>
+                Set a new approval rating:
+                <input class="ml-4 border-2 border-gray-800 rounded-sm" @bind="ApprovalRating" />
+            </label>
+            <MudTextField @bind-Value="ApprovalRating" Label="Outlined" Variant="Variant.Outlined"></MudTextField>
+        </p>
+    </MudCardContent>
+    <MudDivider />
+</MudCard>
+
+@code {
+    private DateTime birthdate { get; set; } = new(2000, 1, 1);
+
+    private void ChangeBirthDate()
+    {
+        birthdate = new Bogus.DataSets.Date().Future();
+    }
+
+    private decimal approvalRating = 1.0M;
+
+    private string ApprovalRating
+    {
+        get => approvalRating.ToString("0.000");
+        set
+        {
+            if (Decimal.TryParse(value, out var number))
+            {
+                approvalRating = Math.Round(number, 3);
+            }
+        }
+    }
+}
