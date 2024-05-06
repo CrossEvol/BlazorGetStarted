@@ -21,19 +21,20 @@
 <PageTitle>Home</PageTitle>
 
 
-<MudDrawer @bind-Open="@open" Elevation="1">
+<MudDrawer Class="overflow-hidden" @bind-Open="@open" Elevation="1">
     <MudDrawerHeader>
         <MudText Typo="Typo.h6">YOUR ORDER</MudText>
     </MudDrawerHeader>
     <div class="grid grid-rows-12 h-3/4">
-        <div class="row-span-10">
+        <div class="row-span-11 overflow-y-scroll overflow-x-hidden">
             <MudStack>
-                <MudPaper Class="pa-3">Item 1</MudPaper>
-                <MudPaper Class="pa-3">Item 2</MudPaper>
-                <MudPaper Class="pa-3">Item 3</MudPaper>
+                @foreach (var item in new List<int> { 1, 2, 3 })
+                {
+                    <MudPaper Class="pa-0"><OrderItem /></MudPaper>
+                }
             </MudStack>
         </div>
-        <div class="row-span-2">
+        <div class="row-span-1">
             <MudStack Row="true" Class="justify-content-evenly bg-danger pa-3">
                 <MudPaper Class="px-2 align-self-lg-center bg-transparent"><MudText Typo="Typo.overline" Class="text-white text-2xl">Total: 34.24</MudText></MudPaper>
                 <MudPaper Class="pa-0"><MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.ArrowRight" Color="Color.Warning">Order</MudButton></MudPaper>
