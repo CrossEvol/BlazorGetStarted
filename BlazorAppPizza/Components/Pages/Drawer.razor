@@ -21,6 +21,7 @@
                 <MudText Typo="Typo.h6">My App</MudText>
             </MudDrawerHeader>
             <MudNavMenu>
+                <div class="hidden">@flag</div>
                 @if (list.Any())
                 {
                     @foreach (var item in list)
@@ -46,6 +47,8 @@
 {
     bool open = false;
 
+    bool flag = false;
+
     void ToggleDrawer()
     {
         open = !open;
@@ -53,9 +56,15 @@
 
     List<string> list => DemoListState.list;
 
-    private void OpenDialog()
+    async Task OpenDialog()
     {
         var options = new DialogOptions { CloseOnEscapeKey = true };
-        DialogService.Show<DrawerDialog>("Simple Dialog", options);
+        var dialog = await DialogService.ShowAsync<DrawerDialog>("Simple Dialog", options);
+        var result = await dialog.Result;
+
+        if(result != null) {
+            flag = !flag;
+        }
+
     }
 }
