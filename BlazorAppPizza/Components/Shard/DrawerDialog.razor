@@ -1,0 +1,32 @@
+﻿@rendermode InteractiveServer
+@using BlazorAppPizza.Services; 
+
+@inject DemoListState DemoListState
+
+<MudDialog>
+    <DialogContent>
+        <MudIconButton OnClick="AddToList" Icon="@Icons.Material.Filled.Add" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" />
+        <MudIconButton OnClick="RemoveFromList" Icon="@Icons.Material.Filled.Delete" Variant="Variant.Filled" Color="Color.Warning" Size="Size.Large" />
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+    void AddToList()
+    {
+        DemoListState.AddItem();
+    }
+
+    void RemoveFromList()
+    {
+        DemoListState.RemoveItem();
+    }
+}

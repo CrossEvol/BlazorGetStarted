@@ -1,8 +1,18 @@
 ﻿@page "/drawer"
 @rendermode InteractiveServer
 @using BlazorAppPizza.Services
+@using BlazorAppPizza.Components.Shard
 
 @inject DemoListState DemoListState
+@inject IDialogService DialogService
+
+<MudDialogProvider FullWidth="true"
+                   MaxWidth="MaxWidth.ExtraSmall"
+                   CloseButton="true"
+                   DisableBackdropClick="true"
+                   NoHeader="true"
+                   Position="DialogPosition.CenterLeft"
+                   CloseOnEscapeKey="true" />
 
 <MudPaper Height="600px" Style="overflow:hidden; position:relative;">
     <MudDrawerContainer Class="mud-height-full">
@@ -26,8 +36,9 @@
         </MudDrawer>
         <div class="d-flex flex-column justify-center align-center mud-height-full">
             <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="@ToggleDrawer">Persistent drawer</MudButton>
-            <MudIconButton OnClick="AddToList" Icon="@Icons.Material.Filled.Add" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" />
-            <MudIconButton OnClick="RemoveFromList" Icon="@Icons.Material.Filled.Delete" Variant="Variant.Filled" Color="Color.Warning" Size="Size.Large" />
+            <MudButton @onclick="OpenDialog" Variant="Variant.Filled" Color="Color.Primary">
+                Open Simple Dialog
+            </MudButton>
         </div>
     </MudDrawerContainer>
 </MudPaper>
@@ -42,11 +53,9 @@
 
     List<string> list => DemoListState.list;
 
-    void AddToList() {
-        DemoListState.AddItem();
-    }
-
-    void RemoveFromList() {
-        DemoListState.RemoveItem();
+    private void OpenDialog()
+    {
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+        DialogService.Show<DrawerDialog>("Simple Dialog", options);
     }
 }
