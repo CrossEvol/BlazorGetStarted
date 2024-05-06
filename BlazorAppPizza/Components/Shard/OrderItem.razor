@@ -9,7 +9,7 @@
             <MudText Typo="Typo.button" Class="overflow-hidden d-inline-block">@Pizza.Special.Name</MudText>
         </CardHeaderContent>
         <CardHeaderActions>
-            <MudIconButton @onclick="@(()=>OrderState.RemoveConfiguredPizza(Pizza))" Icon="@Icons.Material.Filled.Close" Color="Color.Default" />
+            <MudIconButton @onclick="@OnDelete" Icon="@Icons.Material.Filled.Close" Color="Color.Default" />
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent Class="p-0">
@@ -19,6 +19,7 @@
 </MudCard>
 
 @code{
-    [Parameter]
-    public BlazorAppPizza.Pizza Pizza { get; set; }
+    [Parameter] public BlazorAppPizza.Pizza Pizza { get; set; }
+
+    [Parameter] public EventCallback OnDelete { get; set; }
 }

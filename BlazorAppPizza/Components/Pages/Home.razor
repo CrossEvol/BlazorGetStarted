@@ -33,7 +33,7 @@
                 <MudStack>
                     @foreach (var pizzaItem in order.Pizzas)
                     {
-                        <MudPaper Class="pa-0"><OrderItem Pizza="@pizzaItem"/></MudPaper>
+                        <MudPaper Class="pa-0"><OrderItem Pizza="@pizzaItem" OnDelete="@(()=>RemoveOrderItem(pizzaItem))"/></MudPaper>
                     }
                 </MudStack>
             </div>
@@ -111,6 +111,11 @@
     void ToggleDrawer()
     {
         open = !open;
+    }
+
+    void RemoveOrderItem(BlazorAppPizza.Pizza pizza) {
+        OrderState.RemoveConfiguredPizza(pizza);
+        refreshFlag = !refreshFlag;
     }
 
 }
