@@ -33,7 +33,12 @@
                 <MudPaper Class="pa-3">Item 3</MudPaper>
             </MudStack>
         </div>
-        <div class="row-span-2"><MudNavLink Match="NavLinkMatch.All">Store</MudNavLink></div>
+        <div class="row-span-2">
+            <MudStack Row="true" Class="justify-content-evenly bg-danger pa-3">
+                <MudPaper Class="px-2 align-self-lg-center bg-transparent"><MudText Typo="Typo.overline" Class="text-white text-2xl">Total: 34.24</MudText></MudPaper>
+                <MudPaper Class="pa-0"><MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.ArrowRight" Color="Color.Warning">Order</MudButton></MudPaper>
+            </MudStack>
+        </div>
     </div>
 </MudDrawer>
 
