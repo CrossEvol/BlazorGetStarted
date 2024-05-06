@@ -1,0 +1,52 @@
+﻿@page "/drawer"
+@rendermode InteractiveServer
+@using BlazorAppPizza.Services
+
+@inject DemoListState DemoListState
+
+<MudPaper Height="600px" Style="overflow:hidden; position:relative;">
+    <MudDrawerContainer Class="mud-height-full">
+        <MudDrawer @bind-Open="@open" Elevation="0" Variant="@DrawerVariant.Persistent" Color="Color.Primary">
+            <MudDrawerHeader>
+                <MudText Typo="Typo.h6">My App</MudText>
+            </MudDrawerHeader>
+            <MudNavMenu>
+                @if (list.Any())
+                {
+                    @foreach (var item in list)
+                    {
+                        <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard" IconColor="Color.Inherit">@item</MudNavLink>
+                    }
+                }
+                else
+                {
+                    <MudText Typo="Typo.button">Empty List.</MudText>
+                }
+            </MudNavMenu>
+        </MudDrawer>
+        <div class="d-flex flex-column justify-center align-center mud-height-full">
+            <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="@ToggleDrawer">Persistent drawer</MudButton>
+            <MudIconButton OnClick="AddToList" Icon="@Icons.Material.Filled.Add" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" />
+            <MudIconButton OnClick="RemoveFromList" Icon="@Icons.Material.Filled.Delete" Variant="Variant.Filled" Color="Color.Warning" Size="Size.Large" />
+        </div>
+    </MudDrawerContainer>
+</MudPaper>
+@code
+{
+    bool open = false;
+
+    void ToggleDrawer()
+    {
+        open = !open;
+    }
+
+    List<string> list => DemoListState.list;
+
+    void AddToList() {
+        DemoListState.AddItem();
+    }
+
+    void RemoveFromList() {
+        DemoListState.RemoveItem();
+    }
+}

@@ -17,6 +17,7 @@ builder.Services.AddServerSideBlazor();
 // Add the AppState class
 builder.Services.AddScoped<PizzaSalesState>();
 builder.Services.AddScoped<OrderState>();
+builder.Services.AddScoped<DemoListState>();
 
 // Register the pizzas service
 builder.Services.AddSingleton<PizzaService>();
