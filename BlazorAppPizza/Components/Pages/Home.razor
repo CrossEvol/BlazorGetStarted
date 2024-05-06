@@ -25,6 +25,7 @@
     <MudDrawerHeader>
         <MudText Typo="Typo.h6">YOUR ORDER</MudText>
     </MudDrawerHeader>
+    <div class="hidden">@refreshFlag</div>
     @if (order.Pizzas.Any())
     {
         <div class="grid grid-rows-12 h-3/4">
@@ -78,6 +79,7 @@
 
 @code {
     List<PizzaSpecial> specials = new();
+    bool refreshFlag = false;
 
     Order order => OrderState.Order;
 
@@ -86,7 +88,7 @@
         specials = await HttpClient.GetFromJsonAsync<List<PizzaSpecial>>(NavigationManager.BaseUri + "specials");
     }
 
-    public void OpenDialog(PizzaSpecial special)
+    public async Task OpenDialog(PizzaSpecial special)
     {
         OrderState.ConfiguringPizza = new BlazorAppPizza.Pizza()
         {
@@ -96,7 +98,12 @@
             Toppings = new List<BlazorAppPizza.PizzaTopping>(),
         };
         var options = new DialogOptions { CloseOnEscapeKey = true };
-        DialogService.Show<ConfigurePizzaDialog>("Simple Dialog", options);
+        var dialog = await  DialogService.ShowAsync<ConfigurePizzaDialog>("Simple Dialog", options);
+        var result = await dialog.Result;
+
+        if(result != null) {
+            refreshFlag = !refreshFlag;
+        }
     }
 
     bool open = false;
