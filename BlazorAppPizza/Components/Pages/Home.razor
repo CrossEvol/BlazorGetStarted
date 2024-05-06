@@ -20,21 +20,27 @@
 
 <PageTitle>Home</PageTitle>
 
+
 <MudDrawer @bind-Open="@open" Elevation="1">
     <MudDrawerHeader>
-        <MudText Typo="Typo.h6">My App</MudText>
+        <MudText Typo="Typo.h6">YOUR ORDER</MudText>
     </MudDrawerHeader>
-    <MudNavMenu>
-        <MudNavLink Match="NavLinkMatch.All">Store</MudNavLink>
-        <MudNavLink Match="NavLinkMatch.All">Library</MudNavLink>
-        <MudNavLink Match="NavLinkMatch.All">Community</MudNavLink>
-    </MudNavMenu>
+    <div class="grid grid-rows-12 h-3/4">
+        <div class="row-span-10">
+            <MudStack>
+                <MudPaper Class="pa-3">Item 1</MudPaper>
+                <MudPaper Class="pa-3">Item 2</MudPaper>
+                <MudPaper Class="pa-3">Item 3</MudPaper>
+            </MudStack>
+        </div>
+        <div class="row-span-2"><MudNavLink Match="NavLinkMatch.All">Store</MudNavLink></div>
+    </div>
 </MudDrawer>
 
 <div class="bg-opacity-40 max-h-screen flex-grow overflow-y-auto bg-gradient-to-b from-transparent via-transparent to-cyan-200 p-6">
     <MudStack Row="true">
         <MudPaper Class="pa-3"><MudText Typo="Typo.h2">Blazing Pizzas</MudText></MudPaper>
-        <MudPaper Width="200px"  Class="pa-3 d-flex align-items-center justify-center"><MudIconButton Icon="@Icons.Material.Filled.AddShoppingCart" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" /></MudPaper>
+        <MudPaper Width="200px" Class="pa-3 d-flex align-items-center justify-center"><MudIconButton Icon="@Icons.Material.Filled.AddShoppingCart" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" /></MudPaper>
     </MudStack>
     <ul class="grid-cols-12 grid">
         @if (specials != null)
