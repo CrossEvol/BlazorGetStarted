@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MudBlazorWebAppSimple", "Mu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppNavigation", "BlazorAppNavigation\BlazorAppNavigation.csproj", "{B2D2F3F3-EFF6-4B4F-B43C-A5ED4A7064B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppForm", "BlazorAppForm\BlazorAppForm.csproj", "{A1FCA89F-849B-4AD4-95EB-F2D84A9E31A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppForm", "BlazorAppForm\BlazorAppForm.csproj", "{A1FCA89F-849B-4AD4-95EB-F2D84A9E31A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
