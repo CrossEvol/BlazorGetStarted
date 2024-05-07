@@ -1,18 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
+	<PropertyGroup>
+		<PackageId>CE.Learn.MyFirstLibrary</PackageId>
+		<Version>0.0.1</Version>
+		<Authors>Mingfeng Developer</Authors>
+		<Company>com.crossevol</Company>
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
 
-  <ItemGroup>
-    <SupportedPlatform Include="browser" />
-  </ItemGroup>
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.4" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.4" />
+	</ItemGroup>
 
 </Project>
