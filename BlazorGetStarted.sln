@@ -15,9 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppForm", "BlazorAppF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppInteropJS", "BlazorAppInteropJS\BlazorAppInteropJS.csproj", "{096B571E-F880-4806-8CB6-9DBBCEC6AEFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppWithFirstClassLibrary", "BlazorAppWithFirstClassLibrary\BlazorAppWithFirstClassLibrary.csproj", "{B1B6EED3-AA64-47F9-8057-A4E018C0E2AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppWithFirstClassLibrary", "BlazorAppWithFirstClassLibrary\BlazorAppWithFirstClassLibrary.csproj", "{B1B6EED3-AA64-47F9-8057-A4E018C0E2AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstClassLibrary", "FirstClassLibrary\FirstClassLibrary.csproj", "{AE3158EA-5BDE-47AC-8E62-58B675E21C2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstClassLibrary", "FirstClassLibrary\FirstClassLibrary.csproj", "{AE3158EA-5BDE-47AC-8E62-58B675E21C2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsBlazor", "WinFormsBlazor\WinFormsBlazor.csproj", "{350D5765-515B-4E75-A4EA-8C26828A9E00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{AE3158EA-5BDE-47AC-8E62-58B675E21C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE3158EA-5BDE-47AC-8E62-58B675E21C2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE3158EA-5BDE-47AC-8E62-58B675E21C2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{350D5765-515B-4E75-A4EA-8C26828A9E00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{350D5765-515B-4E75-A4EA-8C26828A9E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{350D5765-515B-4E75-A4EA-8C26828A9E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{350D5765-515B-4E75-A4EA-8C26828A9E00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
