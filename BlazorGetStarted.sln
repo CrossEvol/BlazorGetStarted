@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppPizza", "BlazorApp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MudBlazorWebAppSimple", "MudBlazorWebAppSimple\MudBlazorWebAppSimple.csproj", "{5A6664A7-51D3-4E2C-A601-BAE3336F1D86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppNavigation", "BlazorAppNavigation\BlazorAppNavigation.csproj", "{B2D2F3F3-EFF6-4B4F-B43C-A5ED4A7064B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppNavigation", "BlazorAppNavigation\BlazorAppNavigation.csproj", "{B2D2F3F3-EFF6-4B4F-B43C-A5ED4A7064B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
