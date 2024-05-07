@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppNavigation", "Blaz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppForm", "BlazorAppForm\BlazorAppForm.csproj", "{080F4FC9-13FE-4AAE-B598-CCB04CC66222}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppInteropJS", "BlazorAppInteropJS\BlazorAppInteropJS.csproj", "{096B571E-F880-4806-8CB6-9DBBCEC6AEFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{080F4FC9-13FE-4AAE-B598-CCB04CC66222}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{080F4FC9-13FE-4AAE-B598-CCB04CC66222}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{080F4FC9-13FE-4AAE-B598-CCB04CC66222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{096B571E-F880-4806-8CB6-9DBBCEC6AEFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{096B571E-F880-4806-8CB6-9DBBCEC6AEFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{096B571E-F880-4806-8CB6-9DBBCEC6AEFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{096B571E-F880-4806-8CB6-9DBBCEC6AEFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
